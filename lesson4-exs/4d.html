@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+
+    <style>
+      .email-input,.password-input{
+        font-size: 15px;
+        padding: 10px 10px 10px 15px; 
+        border-radius: 5px;margin-bottom: 10px;
+      }
+      .login-button,.signUp-button{
+        background-color: rgb(0,123,255);
+        color: white;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 6px;
+        margin: 10px 10px 0px 0px;
+        cursor: pointer;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function App(){
+
+        return (
+          <>
+            <h3 
+            className="title"
+            >
+            Hello,Welcome to mywebsite
+            </h3>
+            <div>
+              <input 
+                type="text" 
+                placeholder="Email" 
+                className="email-input"
+                />  
+            </div>            
+            <div>
+              <input 
+                type="text" 
+                placeholder="Password"
+                className="password-input" 
+                /> 
+            </div>
+
+            <button className="login-button">
+              Login
+            </button>
+            <button className="signUp-button">
+              Sign Up
+            </button>
+            
+          </>
+        );
+      }
+
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

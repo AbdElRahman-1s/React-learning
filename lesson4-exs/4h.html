@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function App(){
+        const [counter , setCounter] = React.useState(0);
+        const autoClickElem = React.useRef(null);
+
+      function  clickFun(){
+          setCounter(counter + 1);
+        }
+
+      function resetFun(){
+        setCounter(0);
+      }  
+      
+
+      function autoClickFun(){
+        setInterval(() => {
+          autoClickElem.current.click();
+        },1000)
+      }
+
+
+
+      return (
+        <>
+          <button 
+            onClick={clickFun}
+            ref={autoClickElem}
+            >
+            Clicked {counter} times
+          </button>
+          <button onClick={resetFun}>
+            Reset
+          </button>
+          <button 
+            onClick={autoClickFun}
+          >
+            Auto Click
+          </button>
+        </>      
+      );
+
+    }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
