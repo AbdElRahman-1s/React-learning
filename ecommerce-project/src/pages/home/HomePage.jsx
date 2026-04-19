@@ -6,16 +6,16 @@ import './HomePage.css';
 
 
 
-export function HomePage({cart}) {
+export function HomePage({ cart }) {
 
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    axios.get('/api/products')
-      .then((response) => {
-        setProducts(response.data)
-      });
-
+  useEffect( () => {
+    const getHomeDate = async () =>{
+      const response = await axios.get('/api/products')
+      setProducts(response.data);
+    }
+    getHomeDate();
   }, []);
 
 
@@ -30,7 +30,7 @@ export function HomePage({cart}) {
       />
 
       <div className="home-page">
-      <ProductsGrid products={products} />
+        <ProductsGrid products={products} />
       </div>
     </>
   );
