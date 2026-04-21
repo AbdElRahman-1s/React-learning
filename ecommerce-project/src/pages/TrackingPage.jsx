@@ -36,7 +36,7 @@ export function TrackingPage() {
   if (deliveryPercent > 100) {
     deliveryPercent = 100;
   }
-
+/*
   let isPreparing;
   let isShipping;
   let isDelivered;
@@ -48,6 +48,10 @@ if(deliveryPercent < 33){
 }else{
   isDelivered = deliveryPercent;
 }
+  */
+  const isPreparing = deliveryPercent < 33;
+  const isShipping = deliveryPercent >= 33 && deliveryPercent < 100;
+  const isDelivered = deliveryPercent === 100;
 
   return (
     <>
