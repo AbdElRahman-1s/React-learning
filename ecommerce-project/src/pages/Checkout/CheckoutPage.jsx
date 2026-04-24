@@ -32,6 +32,8 @@ export function CheckoutPage({ cart , loadCart}) {
 
   }, [cart])
 
+  window.axios = axios;
+
 
   return (
     <>
