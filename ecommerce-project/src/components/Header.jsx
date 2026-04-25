@@ -6,11 +6,16 @@ import CartIcon from '../assets/images/icons/cart-icon.png'
 import SearchIcon from '../assets/images/icons/search-icon.png';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useSearchParams } from 'react-router';
 export function Header({cart = []}) {
 
   const navigate = useNavigate();
-  const [search , setSearch] = useState('');
+  
 
+  const [searchParams] = useSearchParams();
+  const searchText = searchParams.get('search');
+
+  const [search , setSearch] = useState(searchText ||'');
 
 
   const updateSearchInput = (event) => {
