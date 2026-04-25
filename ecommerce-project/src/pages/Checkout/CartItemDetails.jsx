@@ -11,14 +11,19 @@ export function CartItemDetails({ cartItem, loadCart }) {
 
   const [quantityUpdate, setQuantityUpdate] = useState(false);
 
-  const [quantity , setQuantity] = useState(cartItem.quantity);
+  const [quantity, setQuantity] = useState(cartItem.quantity);
 
-  const switchStateUpdate = () => {
-    if (quantityUpdate === false) {
-      setQuantityUpdate(true);
+  const switchStateUpdate = async () => {
+    if (quantityUpdate) {
+
+      await axios.put(`/api/cart-items/${cartItem.product.id}`, {
+        quantity: Number(quantity)
+      });
+      await loadCart();
+      setQuantityUpdate(false);
     }
     else {
-      setQuantityUpdate(false);
+      setQuantityUpdate(true);
     }
   };
 
@@ -41,9 +46,9 @@ export function CartItemDetails({ cartItem, loadCart }) {
         <div className="product-quantity">
           <span>
             Quantity:{quantityUpdate
-              ?<input className="quantity-textbox" type="number" 
-               value={quantity} onChange={editQuantity}/>
-            :<span className="quantity-label">{cartItem.quantity}</span>
+              ? <input className="quantity-textbox" type="number"
+                value={quantity} onChange={editQuantity} />
+              : <span className="quantity-label">{cartItem.quantity}</span>
             }
           </span>
 
