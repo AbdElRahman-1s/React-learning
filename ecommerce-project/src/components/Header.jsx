@@ -5,9 +5,12 @@ import MobileLogoWhite from '../assets/images/mobile-logo-white.png';
 import CartIcon from '../assets/images/icons/cart-icon.png'
 import SearchIcon from '../assets/images/icons/search-icon.png';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 export function Header({cart = []}) {
 
+  const navigate = useNavigate();
   const [search , setSearch] = useState('');
+
 
 
   const updateSearchInput = (event) => {
@@ -15,10 +18,10 @@ export function Header({cart = []}) {
   };
 
   const searchProducts = () => {
-    console.log(search);
+    navigate(`/?search=${search}`);
   }
 
-
+  
 
   let totalQuantity = 0;
 
