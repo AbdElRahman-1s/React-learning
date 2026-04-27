@@ -8,12 +8,12 @@ export function Product({ product, loadCart }) {
   const [quantity, setQuantity] = useState(1);
   const [addedStatus, setAddedStatus] = useState(false);
 
- const showAdded = () => {
-  setAddedStatus(true);
+  const showAdded = () => {
+    setAddedStatus(true);
     setTimeout(() => {
       setAddedStatus(false);
     }, 2000);
- };
+  };
 
   const addToCart = async () => {
     await axios.post('/api/cart-items', {
@@ -33,6 +33,7 @@ export function Product({ product, loadCart }) {
     <div className="product-container">
       <div className="product-image-container">
         <img className="product-image"
+          data-testid="product-image"
           src={product.image} />
       </div>
 
@@ -42,6 +43,7 @@ export function Product({ product, loadCart }) {
 
       <div className="product-rating-container">
         <img className="product-rating-stars"
+          data-testid="product-stars-image"
           src={`images/ratings/rating-${product.rating.stars * 10}.png`} />
         <div className="product-rating-count link-primary">
           {product.rating.count}
