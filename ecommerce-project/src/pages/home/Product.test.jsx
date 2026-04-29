@@ -7,8 +7,8 @@ import { Product } from './Product.jsx';
 vi.mock('axios');
 
 describe('Product component', () => {
-let product;
-let loadCart;
+  let product;
+  let loadCart;
   beforeEach(() => {
 
     product = {
@@ -22,7 +22,7 @@ let loadCart;
       priceCents: 1090,
       keywords: ["socks", "sports", "apparel"]
     };
-     loadCart = vi.fn();//Mock
+    loadCart = vi.fn();//Mock
   });
 
   it('displays the product details correctly', () => {
@@ -69,5 +69,15 @@ let loadCart;
     expect(loadCart).toHaveBeenCalled();
 
   });
+
+  it('selects a quantity', () => {
+    render(<Product product={product} loadCart={loadCart} />)
+    const quantitySelector = screen.getByTestId('product-quantity-selector')
+    expect(
+      quantitySelector
+    ).toHaveValue('1');
+  });
+
+
 
 });
