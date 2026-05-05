@@ -30,13 +30,13 @@ function App() {
 
 
 
-
+ const title = `${chatMessages.length} Messages`;
 
 
 
   return (
     <div className="app-container">
-      <title>ChatBot</title>
+      <title>{title}</title>
       <link rel="icon" type="image/svg+xml" href={robotImage} />
 
       {
