@@ -1,43 +1,46 @@
-import { useState,useEffect} from 'react'
-import { chatbot} from 'supersimpledev'
-import { ChatInput} from './components/ChatInput'
+import { useState, useEffect } from 'react'
+import { chatbot } from 'supersimpledev'
+import { ChatInput } from './components/ChatInput'
 import ChatMessages from './components/ChatMessages'
 import './App.css'
+import robotImage from './assets/robot.png'
 
 
-function App(){
-  const [chatMessages,setChatMessages] = useState((JSON.parse(localStorage.getItem('messages'))) || []);
-    
-    //const [chatMessages,setChatMessages] = array;
+function App() {
+  const [chatMessages, setChatMessages] = useState((JSON.parse(localStorage.getItem('messages'))) || []);
 
-    //const chatMessages = array[0];
-    //const setChatMessages = array[1];
-    
+  //const [chatMessages,setChatMessages] = array;
+
+  //const chatMessages = array[0];
+  //const setChatMessages = array[1];
+
   useEffect(() => {
     chatbot.addResponses({
-      'bye':'bye. ya beeh',
-      'give me a unique id': function(){
+      'bye': 'bye. ya beeh',
+      'give me a unique id': function () {
         return `Sure! Here's a unique Id: ${crypto.randomUUID()}`;
       }
     });
-  },[]);
+  }, []);
 
 
-  useEffect(()=> {
-    localStorage.setItem('messages',JSON.stringify(chatMessages));
-  },[chatMessages]);
-
-
-
+  useEffect(() => {
+    localStorage.setItem('messages', JSON.stringify(chatMessages));
+  }, [chatMessages]);
 
 
 
 
-    return (
+
+
+
+  return (
     <div className="app-container">
+      <title>ChatBot</title>
+      <link rel="icon" type="image/svg+xml" href={robotImage} />
 
       {
-        (chatMessages.length === 0) &&(
+        (chatMessages.length === 0) && (
           <p
             className="welcome-message"
           >
@@ -46,16 +49,16 @@ function App(){
         )
       }
 
-      <ChatMessages 
+      <ChatMessages
         chatMessages={chatMessages}
       />
 
-        <ChatInput 
+      <ChatInput
         chatMessages={chatMessages}
         setChatMessages={setChatMessages}
       />
     </div>
-    );
-  }
+  );
+}
 
 export default App
