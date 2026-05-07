@@ -3,13 +3,26 @@ import {useState} from 'react'
 import {Chatbot} from 'supersimpledev';
 import './ChatInput.css';
   
-  export function ChatInput({chatMessages,setChatMessages}){
+type ChatMessage = {
+  message: string | React.ReactNode;
+  sender: string;
+  id: string;
+  time?: number;
+};
+
+type ChatInputProps = {
+  chatMessages: ChatMessage[];
+  setChatMessages: (chatMessages: ChatMessage[]) => void;
+};
+
+
+  export function ChatInput({chatMessages,setChatMessages}: ChatInputProps){
 
     const [inputText , setInputText] = useState('');
     const [isLoading,setIsLoading] = useState(false);
 
 
-    function saveInputText(event){
+    function saveInputText(event: React.ChangeEvent<HTMLInputElement>){
       setInputText(event.target.value);
     }
 
@@ -58,7 +71,7 @@ import './ChatInput.css';
       //setInputText('');
     }
 
-    function keyHandler(event){
+    function keyHandler(event: React.KeyboardEvent<HTMLInputElement>){
       if(event.key === 'Enter'){
         sendMessage();
         return;
@@ -81,7 +94,7 @@ import './ChatInput.css';
       <div className="chat-input-container">
         <input 
           placeholder="Send a Message to Chatbot" 
-          size="30" 
+          size={30} 
           type="text" 
           onChange={saveInputText}
           value={inputText}
